@@ -1,23 +1,22 @@
 package paquete.vista;
 
+import paquete.controlador.ControladorTotemApp;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
 import java.awt.GridLayout;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class Ventana extends JFrame {
+public class VentanaTotem extends JFrame {
 
 	private JPanel PanelPrincipal;
-
+	private ControladorTotemApp controlador;
 	/**
 	 * Launch the application.
 	 */
@@ -25,7 +24,7 @@ public class Ventana extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ventana frame = new Ventana();
+					VentanaTotem frame = new VentanaTotem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +36,8 @@ public class Ventana extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ventana() {
+	public VentanaTotem() {
+		this.controlador = new ControladorTotemApp(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		PanelPrincipal = new JPanel();

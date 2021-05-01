@@ -1,5 +1,7 @@
 package paquete.vista;
 
+import paquete.controlador.ControladorTVApp;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -15,6 +17,7 @@ public class VentanaTV extends JFrame {
 
 	private JPanel PanelPrincipal;
 	private JTable table;
+	private ControladorTVApp controlador;
 
 	/**
 	 * Launch the application.
@@ -36,6 +39,7 @@ public class VentanaTV extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaTV() {
+		this.controlador = new ControladorTVApp(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		PanelPrincipal = new JPanel();

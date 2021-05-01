@@ -1,3 +1,7 @@
+package paquete.vista;
+
+import paquete.controlador.ControladorEmpleadoApp;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -12,6 +16,7 @@ import javax.swing.border.TitledBorder;
 public class VentanaEmpleado extends JFrame {
 
 	private JPanel contentPane;
+	private ControladorEmpleadoApp controlador;
 
 	/**
 	 * Launch the application.
@@ -33,6 +38,7 @@ public class VentanaEmpleado extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaEmpleado() {
+		this.controlador = new ControladorEmpleadoApp(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
