@@ -12,8 +12,8 @@ import java.util.Queue;
 public class Servidor extends Thread {
 
     private ArrayList<Empleado> empleados;
-    private Queue<Cliente> clientes;
-    private Queue<Cliente> clientesSiendoAtendidos;
+    private LinkedList<Cliente> clientes;
+    private LinkedList<Cliente> clientesSiendoAtendidos;
 
 
     public static void main(String[] args){

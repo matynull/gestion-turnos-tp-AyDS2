@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class TVApp {
 
     private static TVApp TVApp;
-    private Queue<Cliente> clientes;
-    private Queue<Cliente> clientesSiendoAtendidos;
+    private LinkedList<Cliente> clientes;
+    private LinkedList<Cliente> clientesSiendoAtendidos;
 
     private TVApp(){
 
@@ -36,19 +37,19 @@ public class TVApp {
         }
     }
 
-    public Queue<Cliente> getClientes() {
+    public LinkedList<Cliente> getClientes() {
         return clientes;
     }
 
-    public void setClientes(Queue<Cliente> clientes) {
+    public void setClientes(LinkedList<Cliente> clientes) {
         this.clientes = clientes;
     }
 
-    public Queue<Cliente> getClientesSiendoAtendidos() {
+    public LinkedList<Cliente> getClientesSiendoAtendidos() {
         return clientesSiendoAtendidos;
     }
 
-    public void setClientesSiendoAtendidos(Queue<Cliente> clientesSiendoAtendidos) {
+    public void setClientesSiendoAtendidos(LinkedList<Cliente> clientesSiendoAtendidos) {
         this.clientesSiendoAtendidos = clientesSiendoAtendidos;
     }
 }

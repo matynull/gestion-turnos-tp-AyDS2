@@ -119,6 +119,8 @@ public class VentanaTotem extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(textField.getText().equals("Registro exitoso!!!") || textField.getText().equals("No se logro registrar exitosamente"))
+			textField.setText("");
 		if(e.getActionCommand().equals("BORRAR")){
 			if(textField.getText().length()>0)
 				textField.setText(textField.getText().substring(0,textField.getText().length()-1));
@@ -138,6 +140,7 @@ public class VentanaTotem extends JFrame implements ActionListener {
 
 	public void RegistroExitoso(){
 		textField.setText("Registro exitoso!!!");
+
 	}
 	public void RegistroFallido(){
 		textField.setText("No se logro registrar exitosamente");

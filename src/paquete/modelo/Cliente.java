@@ -1,6 +1,8 @@
 package paquete.modelo;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable {
     private String dni;
     private int box;
 
@@ -25,5 +27,14 @@ public class Cliente {
 
     public void setBox(int box) {
         this.box = box;
+    }
+
+    @Override
+    public String toString() {
+        String string=dni;
+        if(box!=0){
+            string+=box;
+        }
+        return string;
     }
 }
