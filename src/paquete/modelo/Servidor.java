@@ -15,6 +15,11 @@ public class Servidor extends Thread {
     private Queue<Cliente> clientes;
     private Queue<Cliente> clientesSiendoAtendidos;
 
+
+    public static void main(String[] args){
+        Servidor server = new Servidor();
+        server.start();
+    }
     public Servidor() {
         this.empleados = new ArrayList<Empleado>();
         this.clientes = new LinkedList<Cliente>();
@@ -24,10 +29,12 @@ public class Servidor extends Thread {
     @Override
     public void run() {
         try {
+            System.out.println("iniciando");
             ServerSocket serverSocket = new ServerSocket(9000);
             while(true){
+                System.out.println("esperando");
                 Socket socket = serverSocket.accept();
-
+                System.out.println("conecto");
                 ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
                 ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
 
