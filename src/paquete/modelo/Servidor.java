@@ -87,7 +87,6 @@ public class Servidor extends Thread {
         synchronized(clientesSiendoAtendidos) {
             for (Cliente c : clientesSiendoAtendidos) {
                 if (c.getBox() == box) {
-                    System.out.println(c);
                     clientesSiendoAtendidos.remove(c);
                 }
             }
