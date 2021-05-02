@@ -71,13 +71,18 @@ public class VentanaTV extends JFrame {
 
 	public void RefreshTable(LinkedList<Cliente> clientesAtendidos, LinkedList<Cliente> clientes){
 		int i=0;
+		Cliente [] dnis = new Cliente[50];
+		if(!clientesAtendidos.isEmpty()) {
+			Iterator<Cliente> it= clientesAtendidos.iterator();
+			while (it.hasNext())
+				dnis[i++]=it.next();
+		}
 		if(!clientes.isEmpty()) {
-			Cliente [] dnis = new Cliente[10];
 			Iterator<Cliente> it= clientes.iterator();
 			while (it.hasNext())
 				dnis[i++]=it.next();
-			jList.setListData(dnis);
 		}
+		jList.setListData(dnis);
 	}
 
 }

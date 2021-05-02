@@ -26,6 +26,12 @@ public class Paquete implements Serializable {
         this.codigo = codigo;
     }
 
+    public Paquete(int codigo, int box, Cliente cliente){
+        this.codigo = codigo;
+        this.box=box;
+        this.cliente=cliente;
+    }
+
     public LinkedList<Cliente> getClientes() {
         return clientes;
     }

@@ -1,5 +1,7 @@
 package paquete.modelo;
 
+import paquete.controlador.ControladorEmpleadoApp;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -9,6 +11,7 @@ public class EmpleadoApp {
 
     private static EmpleadoApp empleadoApp;
     private Empleado empleado;
+    private ControladorEmpleadoApp controlador;
 
     private EmpleadoApp() {
 
@@ -34,17 +37,19 @@ public class EmpleadoApp {
             Socket socket = new Socket("localhost", 9000);
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
-            os.writeObject(new Paquete(3));
+            os.writeObject(new Paquete(3,empleado.getBox(),controlador.getCliente()));
             paqueteRta = (Paquete) is.readObject();
             if (paqueteRta.getCodigo() == 4) {
-                // manejar esto
+                controlador.noHayClientes();
             } else {
-                //llega cliente
+                controlador.setCliente(paqueteRta.getCliente());
             }
             socket.close();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+    }
+    public void setControlador(ControladorEmpleadoApp c){
+        this.controlador= c;
     }
 }

@@ -33,7 +33,7 @@ public class Cliente implements Serializable {
     public String toString() {
         String string=dni;
         if(box!=0){
-            string+=box;
+            string+="                                                                   "+box;
         }
         return string;
     }

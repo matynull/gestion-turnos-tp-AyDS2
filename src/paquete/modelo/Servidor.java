@@ -29,12 +29,9 @@ public class Servidor extends Thread {
     @Override
     public void run() {
         try {
-            System.out.println("iniciando");
             ServerSocket serverSocket = new ServerSocket(9000);
             while(true){
-                System.out.println("esperando");
                 Socket socket = serverSocket.accept();
-                System.out.println("conecto");
                 ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
                 ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
 
@@ -69,18 +66,32 @@ public class Servidor extends Thread {
                 paqueteRespuesta.setClientes(this.clientes); // devuelve clientes a tv
                 break;
             case 3:
-                    if(this.clientes.isEmpty()){
-                        paqueteRespuesta.setCodigo(4);
-                    }else{
-                        Cliente clienteAtendido = this.clientes.poll();
-                        paqueteRespuesta.setCodigo(0);
-                        clienteAtendido.setBox(paquete.getBox());
-                        this.clientesSiendoAtendidos.add(clienteAtendido);
-                        paqueteRespuesta.setCliente(clienteAtendido); // devuelve el cliente al empleado
-                    }
+                if(paquete.getCliente()!=null){
+                    removerCliente(paquete.getCliente().getBox());
+                }
+                if(this.clientes.isEmpty()){
+                    paqueteRespuesta.setCodigo(4);
+                }else{
+                    Cliente clienteAtendido = this.clientes.poll();
+                    paqueteRespuesta.setCodigo(0);
+                    clienteAtendido.setBox(paquete.getBox());
+                    this.clientesSiendoAtendidos.add(clienteAtendido);
+                    paqueteRespuesta.setCliente(clienteAtendido); // devuelve el cliente al empleado
+                }
                 break;
         }
             return paqueteRespuesta;
+    }
+    
+    private void removerCliente(int box){
+        synchronized(clientesSiendoAtendidos) {
+            for (Cliente c : clientesSiendoAtendidos) {
+                if (c.getBox() == box) {
+                    System.out.println(c);
+                    clientesSiendoAtendidos.remove(c);
+                }
+            }
+        }
     }
 
 }
