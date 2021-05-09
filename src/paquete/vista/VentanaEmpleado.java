@@ -76,6 +76,8 @@ public class VentanaEmpleado extends JFrame {
 		empleado.setText(JOptionPane.showInputDialog("Escriba su nombre"));
 		box.setText(JOptionPane.showInputDialog("Escriba el box en el que se encuentra"));
 		controlador.setEmpleadoApp(empleado.getText(),Integer.parseInt(box.getText()));
+		empleado.setText("Empleado: "+empleado.getText());
+		box.setText("Box: "+box.getText());
 	}
 
 	public void errorClientes(){
