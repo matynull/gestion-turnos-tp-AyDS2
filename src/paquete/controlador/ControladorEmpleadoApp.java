@@ -29,6 +29,10 @@ public class ControladorEmpleadoApp implements ActionListener {
         vista.errorClientes();
     }
 
+    public void errorServidor(){
+        vista.errorServidor();
+    }
+
     public Cliente getCliente(){
         return this.cliente;
     }

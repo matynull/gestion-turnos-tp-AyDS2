@@ -82,4 +82,7 @@ public class VentanaEmpleado extends JFrame {
 		JOptionPane.showMessageDialog(this,"No hay clientes en la cola");
 	}
 
+	public void errorServidor(){
+		JOptionPane.showMessageDialog(this,"No se pudo conectar al servidor");
+	}
 }
