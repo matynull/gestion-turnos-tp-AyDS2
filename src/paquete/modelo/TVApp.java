@@ -1,11 +1,11 @@
 package paquete.modelo;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import paquete.util.Cliente;
+import paquete.util.Paquete;
+
+import java.io.*;
 import java.net.Socket;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class TVApp {
 
@@ -24,8 +24,16 @@ public class TVApp {
     }
 
     public void refrescarTV(){
+        File archivo = new File ("archivo.txt");
         try {
-            Socket socket = new Socket("localhost",9000);
+            String ip = null;
+            String puerto = null;
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
+            ip = br.readLine();
+            puerto = br.readLine();
+            fr.close();
+            Socket socket = new Socket(ip,Integer.parseInt(puerto));
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             os.writeObject(new Paquete(2));

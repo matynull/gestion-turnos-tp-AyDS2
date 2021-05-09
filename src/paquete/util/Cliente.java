@@ -1,4 +1,4 @@
-package paquete.modelo;
+package paquete.util;
 
 import java.io.Serializable;
 

@@ -1,7 +1,7 @@
 package paquete.controlador;
 
-import paquete.modelo.Cliente;
-import paquete.modelo.Empleado;
+import paquete.util.Cliente;
+import paquete.util.Empleado;
 import paquete.modelo.EmpleadoApp;
 import paquete.vista.VentanaEmpleado;
 

@@ -1,13 +1,14 @@
 package paquete.modelo;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import paquete.util.Cliente;
+import paquete.util.Empleado;
+import paquete.util.Paquete;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class Servidor extends Thread {
 
@@ -92,6 +93,7 @@ public class Servidor extends Thread {
             }
         }
     }
+
 
 }
 

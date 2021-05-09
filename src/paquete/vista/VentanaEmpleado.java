@@ -1,14 +1,11 @@
 package paquete.vista;
 
 import paquete.controlador.ControladorEmpleadoApp;
-import paquete.modelo.Empleado;
 import paquete.modelo.EmpleadoApp;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.border.TitledBorder;
 

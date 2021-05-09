@@ -1,19 +1,16 @@
 package paquete.vista;
 
 import paquete.controlador.ControladorTVApp;
-import paquete.modelo.Cliente;
+import paquete.util.Cliente;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.GridLayout;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Queue;
-import javax.swing.table.DefaultTableModel;
 
 public class VentanaTV extends JFrame {
 

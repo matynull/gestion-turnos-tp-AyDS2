@@ -1,10 +1,10 @@
 package paquete.modelo;
 
 import paquete.controlador.ControladorEmpleadoApp;
+import paquete.util.Empleado;
+import paquete.util.Paquete;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 
 public class EmpleadoApp {
@@ -32,9 +32,17 @@ public class EmpleadoApp {
     }
 
     public void atiendeCliente() {
+        Paquete paqueteRta;
+        File archivo = new File ("archivo.txt");
         try {
-            Paquete paqueteRta;
-            Socket socket = new Socket("localhost", 9000);
+            String ip = null;
+            String puerto = null;
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
+            ip = br.readLine();
+            puerto = br.readLine();
+            fr.close();
+            Socket socket = new Socket(ip,Integer.parseInt(puerto));
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             os.writeObject(new Paquete(3,empleado.getBox(),controlador.getCliente()));

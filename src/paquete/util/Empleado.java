@@ -1,4 +1,4 @@
-package paquete.modelo;
+package paquete.util;
 
 public class Empleado {
     private String nombre;
