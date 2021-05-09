@@ -31,6 +31,7 @@ public class Servidor extends Thread {
     public void run() {
         try {
             ServerSocket serverSocket = new ServerSocket(9000);
+            System.out.println("Conectado");
             while(true){
                 Socket socket = serverSocket.accept();
                 ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());

@@ -24,7 +24,7 @@ public class TVApp {
     }
 
     public void refrescarTV(){
-        File archivo = new File ("archivo.txt");
+        File archivo = new File ("cfg.txt");
         try {
             String ip = null;
             String puerto = null;

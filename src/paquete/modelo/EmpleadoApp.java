@@ -33,7 +33,7 @@ public class EmpleadoApp {
 
     public void atiendeCliente() {
         Paquete paqueteRta;
-        File archivo = new File ("archivo.txt");
+        File archivo = new File ("cfg.txt");
         try {
             String ip = null;
             String puerto = null;

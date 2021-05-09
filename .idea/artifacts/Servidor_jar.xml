@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Servidor:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Servidor_jar</output-path>
+    <root id="archive" name="gestion-de-filas.jar">
+      <element id="module-output" name="gestion-de-filas" />
+    </root>
+  </artifact>
+</component>

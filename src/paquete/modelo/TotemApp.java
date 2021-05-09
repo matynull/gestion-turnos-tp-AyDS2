@@ -14,7 +14,7 @@ public class TotemApp {
     }
 
     public void enviarPaquete(String dni){
-        File archivo = new File ("archivo.txt");
+        File archivo = new File ("cfg.txt");
         try {
             String ip = null;
             String puerto = null;
