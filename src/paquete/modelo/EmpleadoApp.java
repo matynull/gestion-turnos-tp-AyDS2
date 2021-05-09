@@ -12,7 +12,6 @@ public class EmpleadoApp {
     private static EmpleadoApp empleadoApp;
     private Empleado empleado;
     private ControladorEmpleadoApp controlador;
-    private int verificacion=1;
 
     private EmpleadoApp() {
 
@@ -52,13 +51,5 @@ public class EmpleadoApp {
     }
     public void setControlador(ControladorEmpleadoApp c){
         this.controlador= c;
-    }
-
-    public int getVerificacion() {
-        return verificacion;
-    }
-
-    public void setVerificacion(int verificacion) {
-        this.verificacion = verificacion;
     }
 }
