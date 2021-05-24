@@ -1,4 +1,4 @@
-package paquete.modelo;
+package paquete.servidor;
 
 import paquete.util.Cliente;
 import paquete.util.Empleado;

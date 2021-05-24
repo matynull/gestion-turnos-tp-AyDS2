@@ -1,6 +1,6 @@
-package paquete.vista;
+package paquete.totem.vista;
 
-import paquete.controlador.ControladorTotemApp;
+import paquete.totem.controlador.ControladorTotemApp;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

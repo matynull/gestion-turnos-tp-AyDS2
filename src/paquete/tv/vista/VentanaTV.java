@@ -1,6 +1,6 @@
-package paquete.vista;
+package paquete.tv.vista;
 
-import paquete.controlador.ControladorTVApp;
+import paquete.tv.controlador.ControladorTVApp;
 import paquete.util.Cliente;
 
 import java.awt.BorderLayout;

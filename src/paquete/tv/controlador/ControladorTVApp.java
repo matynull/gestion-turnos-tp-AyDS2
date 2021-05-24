@@ -1,7 +1,7 @@
-package paquete.controlador;
+package paquete.tv.controlador;
 
-import paquete.modelo.TVApp;
-import paquete.vista.VentanaTV;
+import paquete.tv.modelo.TVApp;
+import paquete.tv.vista.VentanaTV;
 
 public class ControladorTVApp {
 

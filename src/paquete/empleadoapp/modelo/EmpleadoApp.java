@@ -1,6 +1,6 @@
-package paquete.modelo;
+package paquete.empleadoapp.modelo;
 
-import paquete.controlador.ControladorEmpleadoApp;
+import paquete.empleadoapp.controlador.ControladorEmpleadoApp;
 import paquete.util.Empleado;
 import paquete.util.Paquete;
 

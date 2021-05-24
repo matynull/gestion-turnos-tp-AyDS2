@@ -1,7 +1,7 @@
-package paquete.vista;
+package paquete.empleadoapp.vista;
 
-import paquete.controlador.ControladorEmpleadoApp;
-import paquete.modelo.EmpleadoApp;
+import paquete.empleadoapp.controlador.ControladorEmpleadoApp;
+import paquete.empleadoapp.modelo.EmpleadoApp;
 
 import java.awt.EventQueue;
 

@@ -1,4 +1,4 @@
-package paquete.modelo;
+package paquete.tv.modelo;
 
 import paquete.util.Cliente;
 import paquete.util.Paquete;

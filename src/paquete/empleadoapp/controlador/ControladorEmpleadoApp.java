@@ -1,9 +1,9 @@
-package paquete.controlador;
+package paquete.empleadoapp.controlador;
 
 import paquete.util.Cliente;
 import paquete.util.Empleado;
-import paquete.modelo.EmpleadoApp;
-import paquete.vista.VentanaEmpleado;
+import paquete.empleadoapp.modelo.EmpleadoApp;
+import paquete.empleadoapp.vista.VentanaEmpleado;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

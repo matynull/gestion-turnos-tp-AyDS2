@@ -1,4 +1,4 @@
-package paquete.modelo;
+package paquete.totem.modelo;
 
 import paquete.util.Paquete;
 

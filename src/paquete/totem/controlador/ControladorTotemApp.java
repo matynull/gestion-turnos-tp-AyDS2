@@ -1,7 +1,7 @@
-package paquete.controlador;
+package paquete.totem.controlador;
 
-import paquete.modelo.TotemApp;
-import paquete.vista.VentanaTotem;
+import paquete.totem.modelo.TotemApp;
+import paquete.totem.vista.VentanaTotem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
