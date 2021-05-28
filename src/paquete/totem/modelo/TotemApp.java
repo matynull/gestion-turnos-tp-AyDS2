@@ -1,9 +1,9 @@
 package paquete.totem.modelo;
 
-import com.sun.deploy.security.SelectableSecurityManager;
 import paquete.util.Paquete;
 
 import java.io.*;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
@@ -41,7 +41,7 @@ public class TotemApp {
 
             Verificacion(rta.getCodigo());
             socket.close();
-        }catch(SocketTimeoutException e){
+        }catch(SocketTimeoutException | ConnectException e){
             principal=!principal;
             enviarPaquete(dni);
         } catch (IOException | ClassNotFoundException e) {

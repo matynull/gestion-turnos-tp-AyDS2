@@ -4,6 +4,7 @@ import paquete.util.Cliente;
 import paquete.util.Paquete;
 
 import java.io.*;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.LinkedList;
@@ -47,7 +48,7 @@ public class TVApp {
             Paquete paqueteRta = (Paquete) is.readObject();
             this.setClientes(paqueteRta.getClientes());
             this.setClientesSiendoAtendidos(paqueteRta.getClientesSiendoAtendidos());
-        }catch(SocketTimeoutException e){
+        }catch(SocketTimeoutException | ConnectException e){
             principal=!principal;
             refrescarTV();
         }

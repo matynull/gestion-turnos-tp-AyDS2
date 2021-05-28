@@ -94,6 +94,7 @@ public class Servidor extends Thread {
         int codigo = paquete.getCodigo();
         switch (codigo) {
             case 1:
+                System.out.println("Se registro un cliente");
                 paqueteRespuesta.setCodigo(0);
                 break;
             case 2:
@@ -102,6 +103,7 @@ public class Servidor extends Thread {
                 paqueteRespuesta.setClientes(this.clientes); // devuelve clientes a tv
                 break;
             case 3:
+                System.out.println("Se atendio a un cliente");
                 if (paquete.getCliente() != null) {
                     removerCliente(paquete.getCliente().getBox());
                 }
@@ -144,7 +146,6 @@ public class Servidor extends Thread {
             os.writeObject(paquete);
         } catch (IOException e) {
             System.out.println("El servidor secundario esta caido!!!");
-            ;
         }
     }
 
