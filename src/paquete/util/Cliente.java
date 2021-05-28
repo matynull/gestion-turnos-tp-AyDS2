@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Cliente implements Serializable {
     private String dni;
     private int box;
+    private boolean hasBox=false;
 
     public Cliente(){
     }
@@ -32,9 +33,13 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         String string=dni;
-        if(box!=0){
+        if(hasBox==true){
             string+="                                                                   "+box;
         }
         return string;
+    }
+
+    public void setHasBox() {
+        this.hasBox = true;
     }
 }

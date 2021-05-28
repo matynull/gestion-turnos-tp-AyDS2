@@ -127,7 +127,7 @@ public class VentanaTotem extends JFrame implements ActionListener {
 		}else {
 			textField.setText(textField.getText() + e.getActionCommand());
 		}
-		if(textField.getText().length()==8)
+		if(textField.getText().length()>=6)
 			botonR.setEnabled(true);
 		else
 			botonR.setEnabled(false);
