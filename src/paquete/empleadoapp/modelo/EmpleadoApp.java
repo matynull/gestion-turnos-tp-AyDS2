@@ -58,6 +58,8 @@ public class EmpleadoApp {
             os.writeObject(new Paquete(3, empleado.getBox(), controlador.getCliente()));
 
             paqueteRta = (Paquete) is.readObject();
+            if(paqueteRta.getCodigo()==404)
+                throw new SocketTimeoutException();
             socket.close();
             if (paqueteRta.getCodigo() == 4) {
                 controlador.noHayClientes();

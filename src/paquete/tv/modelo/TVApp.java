@@ -46,6 +46,8 @@ public class TVApp {
             socket.setSoTimeout(2000);
             os.writeObject(new Paquete(2));
             Paquete paqueteRta = (Paquete) is.readObject();
+            if(paqueteRta.getCodigo()==404)
+                throw new SocketTimeoutException();
             this.setClientes(paqueteRta.getClientes());
             this.setClientesSiendoAtendidos(paqueteRta.getClientesSiendoAtendidos());
         }catch(SocketTimeoutException | ConnectException e){

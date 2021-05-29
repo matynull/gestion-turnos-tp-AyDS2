@@ -1,6 +1,6 @@
 package paquete.servidor;
 
-import jdk.jfr.events.ExceptionThrownEvent;
+
 import paquete.util.Cliente;
 import paquete.util.Paquete;
 
@@ -149,7 +149,7 @@ public class Servidor extends Thread {
             paquete.setCodigo(50);
             os.writeObject(paquete);
         } catch (IOException e) {
-            System.out.println("El servidor secundario esta caido!!!");
+            //System.out.println("El servidor secundario esta caido!!!");
         }
     }
 
@@ -164,7 +164,12 @@ public class Servidor extends Thread {
                 this.clientesSiendoAtendidos = paquete.getClientesSiendoAtendidos();
             }
             else{
-                os.writeObject(armaPaquete(paquete));
+                if(paquete.getCodigo()==100)
+                    os.writeObject(armaPaquete(paquete));
+                else {
+                    paquete.setCodigo(404);
+                    os.writeObject(paquete);
+                }
             }
         } catch (SocketTimeoutException e) {
             this.esPrincipal = true;

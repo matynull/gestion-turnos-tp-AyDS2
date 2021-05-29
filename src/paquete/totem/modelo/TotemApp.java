@@ -38,12 +38,12 @@ public class TotemApp {
             socket.setSoTimeout(2000);
             os.writeObject(armaPaquete(dni));
             Paquete rta = (Paquete) is.readObject();
-
+            if(rta.getCodigo()==404)
+                throw new SocketTimeoutException();
             Verificacion(rta.getCodigo());
             socket.close();
         }catch(SocketTimeoutException | ConnectException e){
             principal=!principal;
-            System.out.println("infinito");
             enviarPaquete(dni);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
