@@ -43,6 +43,7 @@ public class TotemApp {
             socket.close();
         }catch(SocketTimeoutException | ConnectException e){
             principal=!principal;
+            System.out.println("infinito");
             enviarPaquete(dni);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

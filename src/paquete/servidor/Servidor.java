@@ -1,5 +1,6 @@
 package paquete.servidor;
 
+import jdk.jfr.events.ExceptionThrownEvent;
 import paquete.util.Cliente;
 import paquete.util.Paquete;
 
@@ -54,7 +55,7 @@ public class Servidor extends Thread {
 
             System.out.println("Conectando...");
             try {
-                sleep(10000);
+                sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -120,6 +121,9 @@ public class Servidor extends Thread {
                     }
                 }
                 break;
+            case 100:
+                paqueteRespuesta.setCodigo(0);
+                break;
         }
         return paqueteRespuesta;
     }
@@ -151,10 +155,17 @@ public class Servidor extends Thread {
 
     private void leoServidor(ServerSocket serverSocket) {
         try {
-            ObjectInputStream is = new ObjectInputStream(serverSocket.accept().getInputStream());
+            Socket socket =serverSocket.accept();
+            ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             Paquete paquete = (Paquete) is.readObject();
-            this.clientes = paquete.getClientes();
-            this.clientesSiendoAtendidos = paquete.getClientesSiendoAtendidos();
+            if(paquete.getCodigo()==50) {
+                this.clientes = paquete.getClientes();
+                this.clientesSiendoAtendidos = paquete.getClientesSiendoAtendidos();
+            }
+            else{
+                os.writeObject(armaPaquete(paquete));
+            }
         } catch (SocketTimeoutException e) {
             this.esPrincipal = true;
             System.out.println("No se pudo establecer una conexion con el servidor principal, cambiando roles...");
