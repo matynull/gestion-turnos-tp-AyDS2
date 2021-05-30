@@ -8,7 +8,7 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-public class Monitor {
+public class Monitor implements I_PingEcho{
 
     public static void main(String[] args) {
         Monitor monitor = Monitor.getInstance();
@@ -33,7 +33,7 @@ public class Monitor {
 
     private static Monitor instance = null;
 
-    public static Monitor getInstance() {
+    public static Monitor getInstance(){
         if (instance == null) {
             instance = new Monitor();
         }

@@ -1,5 +1,6 @@
 package paquete.empleadoapp.controlador;
 
+import paquete.servidor.I_SiguienteCliente;
 import paquete.util.Cliente;
 import paquete.util.Empleado;
 import paquete.empleadoapp.modelo.EmpleadoApp;
@@ -8,7 +9,7 @@ import paquete.empleadoapp.vista.VentanaEmpleado;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ControladorEmpleadoApp implements ActionListener {
+public class ControladorEmpleadoApp implements ActionListener, I_TurnoSiguiente {
     private VentanaEmpleado vista;
     private Cliente cliente;
 
@@ -20,6 +21,7 @@ public class ControladorEmpleadoApp implements ActionListener {
         EmpleadoApp.getInstance().setEmpleado(new Empleado(nombre, box));
     }
 
+    @Override
     public void setCliente(Cliente cliente){
         this.cliente=cliente;
         vista.cliente.setText("Cliente: "+cliente.getDni());

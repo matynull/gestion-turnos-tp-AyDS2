@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.TitledBorder;
 
-public class VentanaTotem extends JFrame implements ActionListener {
+public class VentanaTotem extends JFrame implements ActionListener, I_DNI{
 
 	private JPanel PanelPrincipal;
 	private ControladorTotemApp controlador;
@@ -133,10 +133,10 @@ public class VentanaTotem extends JFrame implements ActionListener {
 			botonR.setEnabled(false);
 	}
 
-	public String getDNI(){
+	/*public String getDNI(){
 		String text = textField.getText();
 		return text;
-	}
+	}*/
 
 	public void RegistroExitoso(){
 		textField.setText("Registro exitoso!!!");
@@ -144,5 +144,11 @@ public class VentanaTotem extends JFrame implements ActionListener {
 	}
 	public void RegistroFallido(){
 		textField.setText("No se logro registrar exitosamente");
+	}
+
+	@Override
+	public String getDNI() {
+		String text = textField.getText();
+		return text;
 	}
 }

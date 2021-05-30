@@ -11,7 +11,7 @@ import java.net.SocketTimeoutException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Servidor extends Thread {
+public class Servidor extends Thread implements I_ColaDeTurnos,I_SiguienteCliente,I_Sincronizacion{
 
     private boolean esPrincipal;
     private LinkedList<Cliente> clientes;
@@ -99,13 +99,15 @@ public class Servidor extends Thread {
                 paqueteRespuesta.setCodigo(0);
                 break;
             case 2:
-                paqueteRespuesta.setCodigo(0);
+                ColaDeTurnos(paqueteRespuesta);
+                /*paqueteRespuesta.setCodigo(0);
                 paqueteRespuesta.setClientesSiendoAtendidos(this.clientesSiendoAtendidos); // devuelve clientes siendo atendidos a TV
-                paqueteRespuesta.setClientes(this.clientes); // devuelve clientes a tv
+                paqueteRespuesta.setClientes(this.clientes); // devuelve clientes a tv*/
                 break;
             case 3:
                 System.out.println("Se atendio a un cliente");
-                if (paquete.getCliente() != null) {
+                siguienteCliente(paquete,paqueteRespuesta);
+                /*if (paquete.getCliente() != null) {
                     removerCliente(paquete.getCliente().getBox());
                 }
                 if (this.clientes.isEmpty()) {
@@ -119,13 +121,39 @@ public class Servidor extends Thread {
                         this.clientesSiendoAtendidos.add(clienteAtendido);
                         paqueteRespuesta.setCliente(clienteAtendido); // devuelve el cliente al empleado
                     }
-                }
+                }*/
                 break;
             case 100:
                 paqueteRespuesta.setCodigo(0);
                 break;
         }
         return paqueteRespuesta;
+    }
+
+    @Override
+    public void ColaDeTurnos(Paquete paqueteRespuesta){
+        paqueteRespuesta.setCodigo(0);
+        paqueteRespuesta.setClientesSiendoAtendidos(this.clientesSiendoAtendidos); // devuelve clientes siendo atendidos a TV
+        paqueteRespuesta.setClientes(this.clientes); // devuelve clientes a tv
+    }
+
+    @Override
+    public void siguienteCliente(Paquete paquete,Paquete paqueteRespuesta){
+        if (paquete.getCliente() != null) {
+            removerCliente(paquete.getCliente().getBox());
+        }
+        if (this.clientes.isEmpty()) {
+            paqueteRespuesta.setCodigo(4);
+        } else {
+            synchronized (clientes) {
+                Cliente clienteAtendido = this.clientes.poll();
+                paqueteRespuesta.setCodigo(0);
+                clienteAtendido.setBox(paquete.getBox());
+                clienteAtendido.setHasBox();
+                this.clientesSiendoAtendidos.add(clienteAtendido);
+                paqueteRespuesta.setCliente(clienteAtendido); // devuelve el cliente al empleado
+            }
+        }
     }
 
     private void removerCliente(int box) {
@@ -141,7 +169,8 @@ public class Servidor extends Thread {
         }
     }
 
-    private void mandarUpdate(String ip, int puerto) {
+    @Override
+    public void mandarUpdate(String ip, int puerto) {
         try {
             Socket socket = new Socket(ip, puerto);
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
@@ -153,7 +182,8 @@ public class Servidor extends Thread {
         }
     }
 
-    private void leoServidor(ServerSocket serverSocket) {
+    @Override
+    public void leoServidor(ServerSocket serverSocket) {
         try {
             Socket socket =serverSocket.accept();
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
@@ -180,7 +210,8 @@ public class Servidor extends Thread {
 
     }
 
-    private void sincronizoServidores(String ip, int puerto){
+    @Override
+    public void sincronizoServidores(String ip, int puerto){
         if(this.esPrincipal) {
             new Thread(() -> {
                 try {

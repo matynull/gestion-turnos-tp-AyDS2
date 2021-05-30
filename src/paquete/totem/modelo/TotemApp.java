@@ -7,7 +7,7 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-public class TotemApp {
+public class TotemApp implements I_Cliente {
 
     private static TotemApp totemApp;
     private int verificiacion=1;
@@ -16,6 +16,7 @@ public class TotemApp {
     private TotemApp() {
     }
 
+    @Override
     public void enviarPaquete(String dni){
         File archivo;
         if(principal)

@@ -12,7 +12,7 @@ import java.awt.GridLayout;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class VentanaTV extends JFrame {
+public class VentanaTV extends JFrame implements I_Turnos {
 
 	private JPanel PanelPrincipal;
 	private JList<Cliente> jList;
