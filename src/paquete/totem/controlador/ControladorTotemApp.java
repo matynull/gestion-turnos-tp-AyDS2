@@ -19,7 +19,10 @@ public class ControladorTotemApp implements ActionListener{
         if(TotemApp.getInstanceClienteTotem().getVerificiacion()==0){
             vista.RegistroExitoso();
         }else{
-            vista.RegistroFallido();
+            if(TotemApp.getInstanceClienteTotem().getVerificiacion()==2)
+                vista.ServidoresCaidos();
+            else
+                vista.RegistroFallido();
         }
     }
 }

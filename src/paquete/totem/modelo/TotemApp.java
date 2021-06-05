@@ -10,7 +10,7 @@ import java.net.SocketTimeoutException;
 public class TotemApp implements I_Cliente {
 
     private static TotemApp totemApp;
-    private int verificiacion=1;
+    private int verificiacion=1,intentos=0;
     private boolean principal=true;
 
     private TotemApp() {
@@ -42,10 +42,15 @@ public class TotemApp implements I_Cliente {
             if(rta.getCodigo()==404)
                 throw new SocketTimeoutException();
             Verificacion(rta.getCodigo());
+            intentos=0;
             socket.close();
         }catch(SocketTimeoutException | ConnectException e){
             principal=!principal;
-            enviarPaquete(dni);
+            intentos++;
+            if(intentos>2)
+                setVerificiacion(2);
+            else
+                enviarPaquete(dni);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

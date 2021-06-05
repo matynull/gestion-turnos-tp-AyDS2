@@ -15,6 +15,7 @@ public class EmpleadoApp {
     private Empleado empleado;
     private ControladorEmpleadoApp controlador;
     private boolean principal = true;
+    private int intentos;
 
     private EmpleadoApp() {
 
@@ -61,6 +62,7 @@ public class EmpleadoApp {
             if(paqueteRta.getCodigo()==404)
                 throw new SocketTimeoutException();
             socket.close();
+            intentos=0;
             if (paqueteRta.getCodigo() == 4) {
                 controlador.noHayClientes();
             } else {
@@ -69,7 +71,11 @@ public class EmpleadoApp {
 
         } catch (SocketTimeoutException | ConnectException e) {
             principal = !principal;
-            this.atiendeCliente();
+            intentos++;
+            if(intentos>2)
+                controlador.errorServidor();
+            else
+                this.atiendeCliente();
         } catch (IOException | ClassNotFoundException e) {
             controlador.errorServidor();
         }

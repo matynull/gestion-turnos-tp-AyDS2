@@ -15,6 +15,7 @@ public class TVApp {
     private LinkedList<Cliente> clientes;
     private LinkedList<Cliente> clientesSiendoAtendidos;
     private boolean principal=true;
+    private int intentos=0;
 
     private TVApp(){
 
@@ -50,8 +51,13 @@ public class TVApp {
                 throw new SocketTimeoutException();
             this.setClientes(paqueteRta.getClientes());
             this.setClientesSiendoAtendidos(paqueteRta.getClientesSiendoAtendidos());
+            socket.close();
+            intentos=0;
         }catch(SocketTimeoutException | ConnectException e){
             principal=!principal;
+            intentos++;
+            if(intentos>2)
+                return;
             refrescarTV();
         }
         catch (IOException | ClassNotFoundException e) {
