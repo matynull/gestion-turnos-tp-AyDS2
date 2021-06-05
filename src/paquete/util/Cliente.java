@@ -3,8 +3,8 @@ package paquete.util;
 import java.io.Serializable;
 
 public class Cliente implements Serializable {
-    private String dni;
-    private int box;
+    private String dni,nombre;
+    private int box,categoria;
     private boolean hasBox=false;
 
     public Cliente(){
@@ -41,5 +41,21 @@ public class Cliente implements Serializable {
 
     public void setHasBox() {
         this.hasBox = true;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
     }
 }

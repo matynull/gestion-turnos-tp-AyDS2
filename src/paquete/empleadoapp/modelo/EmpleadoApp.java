@@ -3,13 +3,14 @@ package paquete.empleadoapp.modelo;
 import paquete.empleadoapp.controlador.ControladorEmpleadoApp;
 import paquete.util.Empleado;
 import paquete.util.Paquete;
+import paquete.util.Aplicacion;
 
 import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-public class EmpleadoApp {
+public class EmpleadoApp extends Aplicacion {
 
     private static EmpleadoApp empleadoApp;
     private Empleado empleado;
@@ -35,7 +36,8 @@ public class EmpleadoApp {
         this.empleado = empleado;
     }
 
-    public void atiendeCliente() {
+    @Override
+    public void ejecutarApp() {
         Paquete paqueteRta;
         File archivo;
         if (principal)
@@ -56,31 +58,39 @@ public class EmpleadoApp {
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             socket.setSoTimeout(2000);
-            os.writeObject(new Paquete(3, empleado.getBox(), controlador.getCliente()));
+            os.writeObject(armarPaquete());
 
             paqueteRta = (Paquete) is.readObject();
             if(paqueteRta.getCodigo()==404)
                 throw new SocketTimeoutException();
             socket.close();
             intentos=0;
-            if (paqueteRta.getCodigo() == 4) {
-                controlador.noHayClientes();
-            } else {
-                controlador.setCliente(paqueteRta.getCliente());
-            }
-
+            administrarPaquete(paqueteRta);
         } catch (SocketTimeoutException | ConnectException e) {
             principal = !principal;
             intentos++;
             if(intentos>2)
                 controlador.errorServidor();
             else
-                this.atiendeCliente();
+                this.ejecutarApp();
         } catch (IOException | ClassNotFoundException e) {
             controlador.errorServidor();
         }
     }
 
+    @Override
+    public Paquete armarPaquete(){
+         return new Paquete(3, empleado.getBox(), controlador.getCliente());
+    }
+
+    @Override
+    public void administrarPaquete(Paquete paqueteRta){
+        if (paqueteRta.getCodigo() == 4) {
+            controlador.noHayClientes();
+        } else {
+            controlador.setCliente(paqueteRta.getCliente());
+        }
+    }
     public void setControlador(ControladorEmpleadoApp c) {
         this.controlador = c;
     }

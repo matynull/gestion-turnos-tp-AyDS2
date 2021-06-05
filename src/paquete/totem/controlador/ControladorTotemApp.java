@@ -15,7 +15,7 @@ public class ControladorTotemApp implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        TotemApp.getInstanceClienteTotem().enviarPaquete(vista.getDNI());
+        TotemApp.getInstanceClienteTotem().setDniActual(vista.getDNI());
         if(TotemApp.getInstanceClienteTotem().getVerificiacion()==0){
             vista.RegistroExitoso();
         }else{

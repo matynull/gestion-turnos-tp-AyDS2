@@ -2,6 +2,7 @@ package paquete.tv.modelo;
 
 import paquete.util.Cliente;
 import paquete.util.Paquete;
+import paquete.util.Aplicacion;
 
 import java.io.*;
 import java.net.ConnectException;
@@ -9,7 +10,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.LinkedList;
 
-public class TVApp {
+public class TVApp extends Aplicacion {
 
     private static TVApp TVApp;
     private LinkedList<Cliente> clientes;
@@ -27,7 +28,8 @@ public class TVApp {
         return TVApp;
     }
 
-    public void refrescarTV(){
+    @Override
+    public void ejecutarApp(){
         File archivo;
         if(principal)
             archivo = new File ("cfg.txt");
@@ -45,12 +47,11 @@ public class TVApp {
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             socket.setSoTimeout(2000);
-            os.writeObject(new Paquete(2));
+            os.writeObject(armarPaquete());
             Paquete paqueteRta = (Paquete) is.readObject();
             if(paqueteRta.getCodigo()==404)
                 throw new SocketTimeoutException();
-            this.setClientes(paqueteRta.getClientes());
-            this.setClientesSiendoAtendidos(paqueteRta.getClientesSiendoAtendidos());
+            administrarPaquete(paqueteRta);
             socket.close();
             intentos=0;
         }catch(SocketTimeoutException | ConnectException e){
@@ -58,11 +59,22 @@ public class TVApp {
             intentos++;
             if(intentos>2)
                 return;
-            refrescarTV();
+            ejecutarApp();
         }
         catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Paquete armarPaquete(){
+        return new Paquete(2);
+    }
+
+    @Override
+    public void administrarPaquete(Paquete paqueteRta){
+        this.setClientes(paqueteRta.getClientes());
+        this.setClientesSiendoAtendidos(paqueteRta.getClientesSiendoAtendidos());
     }
 
     public LinkedList<Cliente> getClientes() {

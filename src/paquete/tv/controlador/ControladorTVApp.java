@@ -11,7 +11,7 @@ public class ControladorTVApp {
         this.vista = vista;
         new Thread(()->{
             while (true){
-                TVApp.getInstance().refrescarTV();
+                TVApp.getInstance().ejecutarApp();
                 this.vista.RefreshTable(TVApp.getInstance().getClientesSiendoAtendidos(),TVApp.getInstance().getClientes());
                 try {
                     Thread.sleep(4000);

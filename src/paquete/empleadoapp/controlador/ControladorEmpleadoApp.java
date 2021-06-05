@@ -1,6 +1,5 @@
 package paquete.empleadoapp.controlador;
 
-import paquete.servidor.I_SiguienteCliente;
 import paquete.util.Cliente;
 import paquete.util.Empleado;
 import paquete.empleadoapp.modelo.EmpleadoApp;
@@ -42,7 +41,7 @@ public class ControladorEmpleadoApp implements ActionListener, I_TurnoSiguiente 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("TURNO")){
-            EmpleadoApp.getInstance().atiendeCliente();
+            EmpleadoApp.getInstance().ejecutarApp();
         }
     }
 }

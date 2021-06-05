@@ -100,28 +100,10 @@ public class Servidor extends Thread implements I_ColaDeTurnos,I_SiguienteClient
                 break;
             case 2:
                 ColaDeTurnos(paqueteRespuesta);
-                /*paqueteRespuesta.setCodigo(0);
-                paqueteRespuesta.setClientesSiendoAtendidos(this.clientesSiendoAtendidos); // devuelve clientes siendo atendidos a TV
-                paqueteRespuesta.setClientes(this.clientes); // devuelve clientes a tv*/
                 break;
             case 3:
                 System.out.println("Se atendio a un cliente");
                 siguienteCliente(paquete,paqueteRespuesta);
-                /*if (paquete.getCliente() != null) {
-                    removerCliente(paquete.getCliente().getBox());
-                }
-                if (this.clientes.isEmpty()) {
-                    paqueteRespuesta.setCodigo(4);
-                } else {
-                    synchronized (clientes) {
-                        Cliente clienteAtendido = this.clientes.poll();
-                        paqueteRespuesta.setCodigo(0);
-                        clienteAtendido.setBox(paquete.getBox());
-                        clienteAtendido.setHasBox();
-                        this.clientesSiendoAtendidos.add(clienteAtendido);
-                        paqueteRespuesta.setCliente(clienteAtendido); // devuelve el cliente al empleado
-                    }
-                }*/
                 break;
             case 100:
                 paqueteRespuesta.setCodigo(0);

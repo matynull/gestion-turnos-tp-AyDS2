@@ -1,23 +1,24 @@
 package paquete.totem.modelo;
 
 import paquete.util.Paquete;
+import paquete.util.Aplicacion;
 
 import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-public class TotemApp implements I_Cliente {
+public class TotemApp extends Aplicacion implements I_Cliente {
 
     private static TotemApp totemApp;
     private int verificiacion=1,intentos=0;
     private boolean principal=true;
+    private String dniActual;
 
     private TotemApp() {
     }
 
-    @Override
-    public void enviarPaquete(String dni){
+    public void ejecutarApp(){
         File archivo;
         if(principal)
             archivo = new File ("cfg.txt");
@@ -37,11 +38,11 @@ public class TotemApp implements I_Cliente {
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             socket.setSoTimeout(2000);
-            os.writeObject(armaPaquete(dni));
+            enviarPaquete(os);
             Paquete rta = (Paquete) is.readObject();
             if(rta.getCodigo()==404)
                 throw new SocketTimeoutException();
-            Verificacion(rta.getCodigo());
+            administrarPaquete(rta);
             intentos=0;
             socket.close();
         }catch(SocketTimeoutException | ConnectException e){
@@ -50,14 +51,25 @@ public class TotemApp implements I_Cliente {
             if(intentos>2)
                 setVerificiacion(2);
             else
-                enviarPaquete(dni);
+                ejecutarApp();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public Paquete armaPaquete(String dni){
-        return new Paquete(dni);
+    @Override
+    public Paquete armarPaquete(){
+        return new Paquete(dniActual);
+    }
+
+    @Override
+    public void administrarPaquete(Paquete rta){
+        Verificacion(rta.getCodigo());
+    }
+
+    @Override
+    public void enviarPaquete(ObjectOutputStream os) throws IOException{
+        os.writeObject(armarPaquete());
     }
 
     public void Verificacion(int cod){
@@ -77,5 +89,14 @@ public class TotemApp implements I_Cliente {
 
     public void setVerificiacion(int verificiacion) {
         this.verificiacion = verificiacion;
+    }
+
+    public String getDniActual() {
+        return dniActual;
+    }
+
+    public void setDniActual(String dniActual) {
+        this.dniActual = dniActual;
+        ejecutarApp();
     }
 }
