@@ -1,5 +1,6 @@
 package paquete.util;
 
+import paquete.servidor.modelo.ListaClientes;
 import paquete.util.Cliente;
 
 import java.io.Serializable;
@@ -10,7 +11,7 @@ public class Paquete implements Serializable {
     private int codigo; // 0 = ok | 1 = manda dni | 2 = refrescar tv | 3 = llama cliente | 4 = no hay clientes
     private String dni;
     private Cliente cliente;
-    private LinkedList<Cliente> clientes;
+    private ListaClientes clientes;
     private LinkedList<Cliente> clientesSiendoAtendidos;
     private int box;
 
@@ -32,11 +33,11 @@ public class Paquete implements Serializable {
         this.cliente=cliente;
     }
 
-    public LinkedList<Cliente> getClientes() {
+    public ListaClientes getClientes() {
         return clientes;
     }
 
-    public void setClientes(LinkedList<Cliente> clientes) {
+    public void setClientes(ListaClientes clientes) {
         this.clientes = clientes;
     }
 

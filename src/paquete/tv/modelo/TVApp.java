@@ -1,5 +1,6 @@
 package paquete.tv.modelo;
 
+import paquete.servidor.modelo.ListaClientes;
 import paquete.util.Cliente;
 import paquete.util.Paquete;
 import paquete.util.Aplicacion;
@@ -13,7 +14,7 @@ import java.util.LinkedList;
 public class TVApp extends Aplicacion {
 
     private static TVApp TVApp;
-    private LinkedList<Cliente> clientes;
+    private ListaClientes clientes;
     private LinkedList<Cliente> clientesSiendoAtendidos;
     private boolean principal=true;
     private int intentos=0;
@@ -77,11 +78,11 @@ public class TVApp extends Aplicacion {
         this.setClientesSiendoAtendidos(paqueteRta.getClientesSiendoAtendidos());
     }
 
-    public LinkedList<Cliente> getClientes() {
+    public ListaClientes getClientes() {
         return clientes;
     }
 
-    public void setClientes(LinkedList<Cliente> clientes) {
+    public void setClientes(ListaClientes clientes) {
         this.clientes = clientes;
     }
 

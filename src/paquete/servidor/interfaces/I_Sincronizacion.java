@@ -1,4 +1,4 @@
-package paquete.servidor;
+package paquete.servidor.interfaces;
 
 import java.net.ServerSocket;
 

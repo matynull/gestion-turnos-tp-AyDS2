@@ -6,12 +6,16 @@ public class Cliente implements Serializable {
     private String dni,nombre;
     private int box,categoria;
     private boolean hasBox=false;
+    private final int nroLlegada=nro;
+    static int nro=0;
 
     public Cliente(){
+        nro++;
     }
 
     public Cliente(String dni){
         this.dni=dni;
+        nro++;
     }
 
     public String getDni() {
@@ -32,7 +36,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        String string=dni;
+        String string=nombre;
         if(hasBox==true){
             string+="                                                                   "+box;
         }
@@ -57,5 +61,9 @@ public class Cliente implements Serializable {
 
     public void setCategoria(int categoria) {
         this.categoria = categoria;
+    }
+
+    public int getnroLlegada(){
+        return nroLlegada;
     }
 }

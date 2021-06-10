@@ -143,7 +143,7 @@ public class VentanaTotem extends JFrame implements ActionListener, I_DNI{
 
 	}
 	public void RegistroFallido(){
-		textField.setText("No se logro registrar exitosamente");
+		textField.setText("No se encontro su DNI!!!!");
 	}
 
 	public void ServidoresCaidos(){

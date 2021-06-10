@@ -12,7 +12,7 @@ public class ControladorTVApp {
         new Thread(()->{
             while (true){
                 TVApp.getInstance().ejecutarApp();
-                this.vista.RefreshTable(TVApp.getInstance().getClientesSiendoAtendidos(),TVApp.getInstance().getClientes());
+                this.vista.RefreshTable(TVApp.getInstance().getClientesSiendoAtendidos(),TVApp.getInstance().getClientes().getList());
                 try {
                     Thread.sleep(4000);
                 } catch (InterruptedException e) {

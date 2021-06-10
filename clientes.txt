@@ -1,0 +1,7 @@
+40864546 Matias 2
+42332412 Lucas 1
+1111111 Pepe 0
+1000000 Jorge 1
+2000000 Pedro 2
+3333333 Raul 0
+4444444 Luciana 1

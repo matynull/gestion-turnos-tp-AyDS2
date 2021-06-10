@@ -9,6 +9,7 @@ import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -66,7 +67,7 @@ public class VentanaTV extends JFrame implements I_Turnos {
 		panel_2.add(LabelBox);
 	}
 
-	public void RefreshTable(LinkedList<Cliente> clientesAtendidos, LinkedList<Cliente> clientes){
+	public void RefreshTable(LinkedList<Cliente> clientesAtendidos, ArrayList<Cliente> clientes){
 		int i=0;
 		Cliente [] dnis = new Cliente[50];
 		if(!clientesAtendidos.isEmpty()) {

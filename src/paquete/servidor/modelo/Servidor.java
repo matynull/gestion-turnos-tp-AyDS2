@@ -1,6 +1,9 @@
-package paquete.servidor;
+package paquete.servidor.modelo;
 
 
+import paquete.servidor.interfaces.I_ColaDeTurnos;
+import paquete.servidor.interfaces.I_SiguienteCliente;
+import paquete.servidor.interfaces.I_Sincronizacion;
 import paquete.util.Cliente;
 import paquete.util.Paquete;
 
@@ -11,10 +14,10 @@ import java.net.SocketTimeoutException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Servidor extends Thread implements I_ColaDeTurnos,I_SiguienteCliente,I_Sincronizacion{
+public class Servidor extends Thread implements I_ColaDeTurnos, I_SiguienteCliente, I_Sincronizacion {
 
     private boolean esPrincipal;
-    private LinkedList<Cliente> clientes;
+    private ListaClientes clientes;
     private LinkedList<Cliente> clientesSiendoAtendidos;
 
     public boolean isEsPrincipal() {
@@ -34,7 +37,8 @@ public class Servidor extends Thread implements I_ColaDeTurnos,I_SiguienteClient
     }
 
     public Servidor() {
-        this.clientes = new LinkedList<Cliente>();
+        this.clientes = new ListaClientes();
+        this.clientes.cambiarOrdenLlegada();
         this.clientesSiendoAtendidos = new LinkedList<>();
     }
 
@@ -67,7 +71,7 @@ public class Servidor extends Thread implements I_ColaDeTurnos,I_SiguienteClient
                     ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
                     ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
                     Paquete paqueteEntrada = (Paquete) is.readObject();
-                    this.leePaquete(paqueteEntrada, os);
+                    os.writeObject(this.armaPaquete(paqueteEntrada));
                     socket.close();
                 } else {
                     serverSocket.setSoTimeout(2000);
@@ -83,20 +87,31 @@ public class Servidor extends Thread implements I_ColaDeTurnos,I_SiguienteClient
         }
     }
 
-    private void leePaquete(Paquete paquete, ObjectOutputStream os) throws IOException {
+    /*private void leePaquete(Paquete paquete, ObjectOutputStream os) throws IOException {
         int caso = paquete.getCodigo();
-        if (caso == 1)
-            this.clientes.add(new Cliente(paquete.getDni()));
-        os.writeObject(this.armaPaquete(paquete));
-    }
+        Cliente cliente = buscaCliente(paquete.getDni());
+        if (caso==1){
+            if(cliente!=null)
+                this.clientes.add(cliente);
+            else
+                paquete.setCodigo(404);
+        }
+
+    }*/
 
     private Paquete armaPaquete(Paquete paquete) {
         Paquete paqueteRespuesta = new Paquete();
         int codigo = paquete.getCodigo();
         switch (codigo) {
             case 1:
-                System.out.println("Se registro un cliente");
-                paqueteRespuesta.setCodigo(0);
+                Cliente cliente = buscaCliente(paquete.getDni());
+                if(cliente!=null) {
+                    System.out.println("Se registro un cliente");
+                    paqueteRespuesta.setCodigo(0);
+                    this.clientes.add(cliente);
+                }else{
+                    paqueteRespuesta.setCodigo(405);
+                }
                 break;
             case 2:
                 ColaDeTurnos(paqueteRespuesta);
@@ -208,5 +223,31 @@ public class Servidor extends Thread implements I_ColaDeTurnos,I_SiguienteClient
         }
     }
 
+    public Cliente buscaCliente(String dni){
+        Cliente cliente=null;
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br=null;
+        String linea=null;
+        try {
+            archivo = new File("clientes.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            while(((linea=br.readLine()) != null) && !dni.equals(linea.substring(0,linea.indexOf(' '))));
+            System.out.println(linea);
+            fr.close();
+            if(linea!=null){
+                cliente=new Cliente(dni);
+                String aux= linea.substring(linea.indexOf(' '));
+                cliente.setNombre(aux.substring(0,linea.indexOf(' ')));
+                cliente.setCategoria(Integer.parseInt(aux.substring(linea.indexOf(' '))));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return cliente;
+    }
 }
 
