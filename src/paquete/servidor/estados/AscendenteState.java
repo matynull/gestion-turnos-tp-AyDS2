@@ -22,7 +22,7 @@ public class AscendenteState implements I_State{
     }
 
     public void cambiarDescente(){
-        clientes.setEstado(StateFactory.getState("Descendete",clientes));
+        clientes.setEstado(StateFactory.getState("Descendente",clientes));
     }
     public void cambiarAscente(){
     }

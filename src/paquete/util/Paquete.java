@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Paquete implements Serializable {
 
     private int codigo; // 0 = ok | 1 = manda dni | 2 = refrescar tv | 3 = llama cliente | 4 = no hay clientes
-    private String dni;
+    private String dni,modo;
     private Cliente cliente;
     private ListaClientes clientes;
     private LinkedList<Cliente> clientesSiendoAtendidos;
@@ -79,5 +79,12 @@ public class Paquete implements Serializable {
 
     public void setBox(int box) {
         this.box = box;
+    }
+
+    public void setModo(String s){
+        modo = s;
+    }
+    public String getModo(){
+        return modo;
     }
 }

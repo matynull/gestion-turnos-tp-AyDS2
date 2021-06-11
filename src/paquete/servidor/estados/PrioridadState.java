@@ -18,7 +18,7 @@ public class PrioridadState implements I_State{
         list.sort(Comparator.comparingInt(Cliente::getCategoria));
     }
     public void cambiarDescente(){
-        clientes.setEstado(StateFactory.getState("Descendete",clientes));
+        clientes.setEstado(StateFactory.getState("Descendente",clientes));
     }
     public void cambiarAscente(){
         clientes.setEstado(StateFactory.getState("Ascendente",clientes));

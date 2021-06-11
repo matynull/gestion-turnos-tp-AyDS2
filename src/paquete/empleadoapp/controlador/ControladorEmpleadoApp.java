@@ -23,7 +23,7 @@ public class ControladorEmpleadoApp implements ActionListener, I_TurnoSiguiente 
     @Override
     public void setCliente(Cliente cliente){
         this.cliente=cliente;
-        vista.cliente.setText("Cliente: "+cliente.getDni());
+        vista.cliente.setText("Cliente: "+cliente.getNombre());
     }
 
     public void noHayClientes(){

@@ -18,6 +18,7 @@ public class TVApp extends Aplicacion {
     private LinkedList<Cliente> clientesSiendoAtendidos;
     private boolean principal=true;
     private int intentos=0;
+    private String modo= null;
 
     private TVApp(){
 
@@ -43,6 +44,7 @@ public class TVApp extends Aplicacion {
             BufferedReader br = new BufferedReader(fr);
             ip = br.readLine();
             puerto = br.readLine();
+            modo = br.readLine();
             fr.close();
             Socket socket = new Socket(ip,Integer.parseInt(puerto));
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
@@ -69,7 +71,9 @@ public class TVApp extends Aplicacion {
 
     @Override
     public Paquete armarPaquete(){
-        return new Paquete(2);
+        Paquete paquete = new Paquete(2);
+        paquete.setModo(modo);
+        return paquete;
     }
 
     @Override
