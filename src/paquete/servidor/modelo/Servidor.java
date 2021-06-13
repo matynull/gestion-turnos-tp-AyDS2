@@ -229,12 +229,12 @@ public class Servidor extends Thread implements I_ColaDeTurnos, I_SiguienteClien
             archivo = new File("clientes.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
-            while (((linea = br.readLine()) != null) && !dni.equals(linea.substring(0, linea.indexOf(' ')))) ;
+            while (((linea = br.readLine()) != null) && !dni.equals(linea.substring(0, linea.indexOf(',')))) ;
 
             fr.close();
             if (linea != null) {
                 cliente = new Cliente(dni);
-                String aux = linea.substring(linea.indexOf(' '));
+                String aux = linea.substring(linea.indexOf(','));
                 cliente.setNombre(aux.substring(0, aux.length()-2));
                 cliente.setCategoria(Integer.parseInt(aux.charAt(aux.length()-1)+""));
             }
