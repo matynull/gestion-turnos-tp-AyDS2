@@ -1,6 +1,7 @@
 package paquete.servidor.modelo;
 
 
+import paquete.servidor.interfaces.I_BuscaCliente;
 import paquete.servidor.interfaces.I_ColaDeTurnos;
 import paquete.servidor.interfaces.I_SiguienteCliente;
 import paquete.servidor.interfaces.I_Sincronizacion;
@@ -16,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Servidor extends Thread implements I_ColaDeTurnos, I_SiguienteCliente, I_Sincronizacion {
+public class Servidor extends Thread implements I_ColaDeTurnos, I_SiguienteCliente, I_Sincronizacion, I_BuscaCliente {
 
     private boolean esPrincipal;
     private ListaClientes clientes;
@@ -217,6 +218,7 @@ public class Servidor extends Thread implements I_ColaDeTurnos, I_SiguienteClien
         }
     }
 
+    @Override
     public Cliente buscaCliente(String dni) {
         Cliente cliente = null;
         File archivo = null;
