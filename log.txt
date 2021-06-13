@@ -34,3 +34,8 @@
 [2021-06-10T21:19:46] Se registro el cliente  Raul
 [2021-06-10T21:20:04] Se registro el cliente  Luciana
 [2021-06-10T21:20:29] Se atendio al cliente  Jorge. En el puesto2
+[2021-06-13T17:56:12] Se registro el cliente ,Matias Almeida
+[2021-06-13T18:00:04] Se registro el cliente Matias Almeida
+[2021-06-13T18:00:15] Se registro el cliente Lucas Munoz
+[2021-06-13T18:00:31] Se atendio al cliente Lucas Munoz. En el puesto2
+[2021-06-13T18:00:35] Se atendio al cliente Matias Almeida. En el puesto2

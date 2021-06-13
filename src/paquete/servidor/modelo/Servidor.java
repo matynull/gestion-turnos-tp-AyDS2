@@ -235,7 +235,7 @@ public class Servidor extends Thread implements I_ColaDeTurnos, I_SiguienteClien
             if (linea != null) {
                 cliente = new Cliente(dni);
                 String aux = linea.substring(linea.indexOf(','));
-                cliente.setNombre(aux.substring(0, aux.length()-2));
+                cliente.setNombre(aux.substring(1, aux.length()-2));
                 cliente.setCategoria(Integer.parseInt(aux.charAt(aux.length()-1)+""));
             }
         } catch (FileNotFoundException e) {

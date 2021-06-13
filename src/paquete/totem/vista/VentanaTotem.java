@@ -119,7 +119,7 @@ public class VentanaTotem extends JFrame implements ActionListener, I_DNI{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(textField.getText().equals("Registro exitoso!!!") || textField.getText().equals("No se logro registrar exitosamente") || textField.getText().equals("Fallo la conexion con los servidores!!!"))
+		if(textField.getText().equals("Registro exitoso!!!") || textField.getText().equals("No se logro registrar exitosamente") || textField.getText().equals("Fallo la conexion con los servidores!!!") || textField.getText().equals("No se encontro su DNI!!!!"))
 			textField.setText("");
 		if(e.getActionCommand().equals("BORRAR")){
 			if(textField.getText().length()>0)
